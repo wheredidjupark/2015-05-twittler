@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
     <div class="timer"></div>
-    <button type="button"class="TweetDisplay">Load Tweet</button>
+    <button type="button" class="TweetDisplay">Load Tweet</button>
     <div class = "tweets"></div>
+
+
+     <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
     <script>
 
 
@@ -22,15 +26,13 @@
           currentTime = currentTime.getTime();
           $(".timer").text(currentTime);
         };
-
         setInterval(displayCurrentTime, 1000);
+
 
         var showTweet = function(){
         var tweet = streams.home[index];
 
-
-          if(streams.home[index] !== undefined){
-
+        if(streams.home[index] !== undefined) {
             var $tweet = $("<div class=\"tweet\"></div>");
             var $tweetUser = $("<div class=\"tweetUser\">@ "+tweet.user+"</div>");
             var $tweetMessage = $("<div class=\"tweetMessage\">"+tweet.message+"</div>");
@@ -45,7 +47,6 @@
             currentTime = currentTime.getTime();
             */
             $body.children(".tweets").prepend($tweet);
-
             index++;
           }
         };
