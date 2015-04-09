@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
@@ -34,7 +34,7 @@
 
         if(streams.home[index] !== undefined) {
             var $tweet = $("<div class=\"tweet\"></div>");
-            var $tweetUser = $("<div class=\"tweetUser\">@ "+tweet.user+"</div>");
+            var $tweetUser = $("<button class=\"tweetUser\">@"+tweet.user+"</button>");
             var $tweetMessage = $("<div class=\"tweetMessage\">"+tweet.message+"</div>");
             var $tweetTime = $("<div class=\"tweetTime\">"+tweet.created_at.toLocaleString()+"</div>");
 
@@ -51,7 +51,13 @@
           }
         };
 
+        var showUserTweet = function(){
+          alert("you clicked!");
+        };
+
         $("body").on("click",".TweetDisplay" ,showTweet);
+
+        $("body").children(".tweets").on("click",".tweetUser",showUserTweet);
 
         /*
         while(index !== streams.home.length){
