@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
     <div class="timer"></div>
     <button type="button" class="DisplayMoreTweets">Show More Tweets</button>
     <button type="button" class="DisplayAllTweets">Show All Tweets</button>
-    <div class = "tweets"></div>
+    <div class = "tweets .container"></div>
 
 
      <script src="jquery.js"></script>
@@ -33,6 +33,7 @@
 
         var updateTweet = function(){
 
+
         if(count < streams.home.length) {
           while(count < streams.home.length){
             var tweet = streams.home[count];
@@ -50,7 +51,9 @@
             $body.children(".tweets").prepend($tweet);
 
         }
-      }
+      }            
+
+
     };
 
         var showTweet = function(){

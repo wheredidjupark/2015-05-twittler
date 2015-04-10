@@ -1,28 +1,34 @@
-.body{
-	background-color: gray;
+body{
+	background: url("../img/background2.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
 }
 
 .tweets{
-	margin-right: 50px;
+	margin: 20px 0;
 }
 
 .tweet{
-	margin: 15px 0;
+	margin: 10px 0;
 	background-color: white;
 	width: 400px;
-	border: 1px solid;
-	border-radius: 10px;
+	border: 1px groove;
+	border-radius: 5px;
 	padding: 10px;
 
 }
 
+.tweetUser{
+	color: rgb(66,122, 237);
+}
 .tweetUser:hover {
 	text-decoration: underline;
 }
 
 .tweetMessage{
 	padding: 5px 20px;
-	border: 1px solid black;
+	border: 1px ridge;
 	margin: 5px 0;
 }
 .tweetTime{
