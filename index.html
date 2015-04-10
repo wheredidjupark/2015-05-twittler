@@ -6,7 +6,8 @@
   </head>
   <body>
     <div class="timer"></div>
-    <button type="button" class="TweetDisplay">Load Tweet</button>
+    <button type="button" class="DisplayMoreTweets">More Tweets</button>
+    <button type="button" class="DisplayAllTweets">Home</button>
     <div class = "tweets"></div>
 
 
@@ -18,8 +19,8 @@
       $(document).ready(function(){
         var $body = $('body');
 
-        var index =0;
-
+        var initial_length =streams.home.length-1;
+        var count = 0;
 
         var displayCurrentTime = function(){
           var currentTime = new Date();
@@ -29,44 +30,106 @@
         setInterval(displayCurrentTime, 1000);
 
 
-        var showTweet = function(){
-        var tweet = streams.home[index];
 
-        if(streams.home[index] !== undefined) {
+        var updateTweet = function(){
+
+        if(count < streams.home.length) {
+            var tweet = streams.home[count];
             var $tweet = $("<div class=\"tweet\"></div>");
-            var $tweetUser = $("<button class=\"tweetUser\">@"+tweet.user+"</button>");
+            var $tweetUser = $("<div class=\"tweetUser\">@"+tweet.user+"</div>");
             var $tweetMessage = $("<div class=\"tweetMessage\">"+tweet.message+"</div>");
             var $tweetTime = $("<div class=\"tweetTime\">"+tweet.created_at.toLocaleString()+"</div>");
 
+            $tweetUser.data("user",tweet.user);
             $tweet.append($tweetUser);
             $tweet.append($tweetMessage);
             $tweet.append($tweetTime);
-            /*
-            var tweetTime = tweet.created_at.getTime();
-            var currentTime = new Date();
-            currentTime = currentTime.getTime();
-            */
+            count++;
+        }
+      };
+
+        var showTweet = function(){
+       
+        //var tweet = streams.home initial_length];
+        $(".tweets").empty();
+        count =0;
+        if(count < initial_length)
+        {
+        while(count < initial_length){
+
+            var tweet = streams.home[count];
+            var $tweet = $("<div class=\"tweet\"></div>");
+            var $tweetUser = $("<div class=\"tweetUser\">@"+tweet.user+"</div>");
+            var $tweetMessage = $("<div class=\"tweetMessage\">"+tweet.message+"</div>");
+            var $tweetTime = $("<div class=\"tweetTime\">"+tweet.created_at.toLocaleString()+"</div>");
+
+            $tweetUser.data("user",tweet.user);
+            $tweet.append($tweetUser);
+            $tweet.append($tweetMessage);
+            $tweet.append($tweetTime);
+
             $body.children(".tweets").prepend($tweet);
-            index++;
+            initial_length = streams.home.length;
+            count++;
+        }
+      }
+      /*
+      else{
+        if(streams.home[count] !== streams.home.length) {
+            var tweet = streams.home[count];
+            var $tweet = $("<div class=\"tweet\"></div>");
+            var $tweetUser = $("<div class=\"tweetUser\">@"+tweet.user+"</div>");
+            var $tweetMessage = $("<div class=\"tweetMessage\">"+tweet.message+"</div>");
+            var $tweetTime = $("<div class=\"tweetTime\">"+tweet.created_at.toLocaleString()+"</div>");
+
+            $tweetUser.data("user",tweet.user);
+            console.log($tweetUser.data());
+            $tweet.append($tweetUser);
+            $tweet.append($tweetMessage);
+            $tweet.append($tweetTime);
+
+            $body.children(".tweets").prepend($tweet);
+            count++;
           }
+        }*/
         };
+
+
 
         var showUserTweet = function(){
-          alert("you clicked!");
+          var user = $(this).data("user");
+          $(".tweets").empty();
+
+          for(var i=0; i < streams.users[user].length; i++)
+          {
+            var $tweet = $("<div class=\"tweet\"></div>");
+            var $tweetUser = $("<div class=\"tweetUser\">@"+user+"</div>");
+            var $tweetMessage = $("<div class=\"tweetMessage\">"+streams.users[user][i].message+"</div>");
+            var $tweetTime = $("<div class=\"tweetTime\">"+streams.users[user][i].created_at.toLocaleString()+"</div>");
+
+            $tweetUser.data("user",streams.users[user][i].user);
+            $tweet.append($tweetUser);
+            $tweet.append($tweetMessage);
+            $tweet.append($tweetTime);
+
+            $body.children(".tweets").prepend($tweet);
+         }
         };
 
-        $("body").on("click",".TweetDisplay" ,showTweet);
-
+        showTweet();
+        $("body").on("click",".DisplayMoreTweets" ,updateTweet);
+        $("body").on("click",".DisplayAllTweets", showTweet);
         $("body").children(".tweets").on("click",".tweetUser",showUserTweet);
 
+
         /*
-        while(index !== streams.home.length){
-          var tweet = streams.home[index];
+        while initial_length !== streams.home.length){
+          var tweet = streams.home initial_length];
           var $tweet = $('<div></div>');
           var $tweet.addClass(".tweet");
           $tweet.text('@' + tweet.user + ': ' + tweet.message + tweet.created_at.toLocaleString());
           $body.children(".tweets").append($tweet);
-          index++;
+          initial_length++;
         }
 
         $(".TweetDisplay").click(function(){
