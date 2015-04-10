@@ -6,8 +6,8 @@
   </head>
   <body>
     <div class="timer"></div>
-    <button type="button" class="DisplayMoreTweets">More Tweets</button>
-    <button type="button" class="DisplayAllTweets">Home</button>
+    <button type="button" class="DisplayMoreTweets">Show More Tweets</button>
+    <button type="button" class="DisplayAllTweets">Show All Tweets</button>
     <div class = "tweets"></div>
 
 
@@ -24,7 +24,7 @@
 
         var displayCurrentTime = function(){
           var currentTime = new Date();
-          currentTime = currentTime.getTime();
+          currentTime = currentTime.toLocaleString();
           $(".timer").text(currentTime);
         };
         setInterval(displayCurrentTime, 1000);
