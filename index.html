@@ -103,6 +103,7 @@
         var showUserTweet = function(){
           var user = $(this).data("user");
           $(".tweets").empty();
+
           var stream = streams.users[user];
           for(var i=0; i < stream.length; i++)
           {
@@ -111,7 +112,7 @@
             var $tweetMessage = $("<div class=\"tweetMessage\">"+stream[i].message+"</div>");
             var $tweetTime = $("<div class=\"tweetTime\">"+stream[i].created_at.toLocaleString()+"</div>");
 
-            $tweetUser.data("user",stream.user);
+            $tweetUser.data("user",user);
             $tweet.append($tweetUser);
             $tweet.append($tweetMessage);
             $tweet.append($tweetTime);
