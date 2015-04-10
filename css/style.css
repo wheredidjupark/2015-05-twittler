@@ -6,17 +6,18 @@ body{
 }
 
 .tweets{
-	margin: 20px 0;
+	margin: 20px auto;
 }
 
+
 .tweet{
-	margin: 10px 0;
+	margin: 10px auto;
 	background-color: white;
-	width: 400px;
+	width: 500px;
 	border: 1px groove;
 	border-radius: 5px;
 	padding: 10px;
-
+	display: block;
 }
 
 .tweetUser{

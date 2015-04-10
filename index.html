@@ -6,7 +6,7 @@
   </head>
   <body>
     <div class="timer"></div>
-    <button type="button" class="DisplayMoreTweets">Show More Tweets</button>
+    <button type="button" class="DisplayMoreTweets">New Tweets</button>
     <button type="button" class="DisplayAllTweets">Show All Tweets</button>
     <div class = "tweets .container"></div>
 
@@ -24,6 +24,7 @@
 
         var displayCurrentTime = function(){
           var currentTime = new Date();
+          var Hour = currentTime.getH
           currentTime = currentTime.toLocaleString();
           $(".timer").text(currentTime);
         };
@@ -32,8 +33,6 @@
 
 
         var updateTweet = function(){
-
-
         if(count < streams.home.length) {
           while(count < streams.home.length){
             var tweet = streams.home[count];
