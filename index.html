@@ -34,6 +34,7 @@
         var updateTweet = function(){
 
         if(count < streams.home.length) {
+          while(count < streams.home.length){
             var tweet = streams.home[count];
             var $tweet = $("<div class=\"tweet\"></div>");
             var $tweetUser = $("<div class=\"tweetUser\">@"+tweet.user+"</div>");
@@ -45,17 +46,20 @@
             $tweet.append($tweetMessage);
             $tweet.append($tweetTime);
             count++;
+
+            $body.children(".tweets").prepend($tweet);
+
         }
-      };
+      }
+    };
 
         var showTweet = function(){
        
         //var tweet = streams.home initial_length];
         $(".tweets").empty();
         count =0;
-        if(count < initial_length)
-        {
-        while(count < initial_length){
+
+        while(count < streams.home.length){
 
             var tweet = streams.home[count];
             var $tweet = $("<div class=\"tweet\"></div>");
@@ -69,9 +73,9 @@
             $tweet.append($tweetTime);
 
             $body.children(".tweets").prepend($tweet);
-            initial_length = streams.home.length;
+            //initial_length = streams.home.length;
             count++;
-        }
+        
       }
       /*
       else{
@@ -99,15 +103,15 @@
         var showUserTweet = function(){
           var user = $(this).data("user");
           $(".tweets").empty();
-
-          for(var i=0; i < streams.users[user].length; i++)
+          var stream = streams.users[user];
+          for(var i=0; i < stream.length; i++)
           {
             var $tweet = $("<div class=\"tweet\"></div>");
             var $tweetUser = $("<div class=\"tweetUser\">@"+user+"</div>");
-            var $tweetMessage = $("<div class=\"tweetMessage\">"+streams.users[user][i].message+"</div>");
-            var $tweetTime = $("<div class=\"tweetTime\">"+streams.users[user][i].created_at.toLocaleString()+"</div>");
+            var $tweetMessage = $("<div class=\"tweetMessage\">"+stream[i].message+"</div>");
+            var $tweetTime = $("<div class=\"tweetTime\">"+stream[i].created_at.toLocaleString()+"</div>");
 
-            $tweetUser.data("user",streams.users[user][i].user);
+            $tweetUser.data("user",stream.user);
             $tweet.append($tweetUser);
             $tweet.append($tweetMessage);
             $tweet.append($tweetTime);
