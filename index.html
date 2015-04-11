@@ -13,6 +13,7 @@
 
      <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="jquery.timeago.js"></script>
     <script>
 
 
@@ -39,7 +40,7 @@
             var $tweet = $("<div class=\"tweet\"></div>");
             var $tweetUser = $("<div class=\"tweetUser\">@"+tweet.user+"</div>");
             var $tweetMessage = $("<div class=\"tweetMessage\">"+tweet.message+"</div>");
-            var $tweetTime = $("<div class=\"tweetTime\">"+tweet.created_at.toLocaleString()+"</div>");
+            var $tweetTime = $("<div class=\"tweetTime\">"+$.timeago(tweet.created_at) +"</div>");
 
             $tweetUser.data("user",tweet.user);
             $tweet.append($tweetUser);
@@ -67,7 +68,7 @@
             var $tweet = $("<div class=\"tweet\"></div>");
             var $tweetUser = $("<div class=\"tweetUser\">@"+tweet.user+"</div>");
             var $tweetMessage = $("<div class=\"tweetMessage\">"+tweet.message+"</div>");
-            var $tweetTime = $("<div class=\"tweetTime\">"+tweet.created_at.toLocaleString()+"</div>");
+            var $tweetTime = $("<div class=\"tweetTime\">"+$.timeago(tweet.created_at)+"</div>");
 
             $tweetUser.data("user",tweet.user);
             $tweet.append($tweetUser);
@@ -112,7 +113,7 @@
             var $tweet = $("<div class=\"tweet\"></div>");
             var $tweetUser = $("<div class=\"tweetUser\">@"+user+"</div>");
             var $tweetMessage = $("<div class=\"tweetMessage\">"+stream[i].message+"</div>");
-            var $tweetTime = $("<div class=\"tweetTime\">"+stream[i].created_at.toLocaleString()+"</div>");
+            var $tweetTime = $("<div class=\"tweetTime\">"+$.timeago(stream[i].created_at)+"</div>");
 
             $tweetUser.data("user",user);
             $tweet.append($tweetUser);
