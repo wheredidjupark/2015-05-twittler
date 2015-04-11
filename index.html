@@ -124,6 +124,11 @@
          }
         };
 
+        setInterval(function(){
+          var newTweetCount = streams.home.length - count;
+          $(".DisplayMoreTweets").text(newTweetCount + " New Tweets");      
+        }, 10)
+
         showTweet();
         $("body").on("click",".DisplayMoreTweets" ,updateTweet);
         $("body").on("click",".DisplayAllTweets", showTweet);
