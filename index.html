@@ -34,6 +34,7 @@
 
 
         var updateTweet = function(){
+          showTweet();
         if(count < streams.home.length) {
           while(count < streams.home.length){
             var tweet = streams.home[count];
@@ -48,8 +49,8 @@
             $tweet.append($tweetTime);
             count++;
 
-            $body.children(".tweets").prepend($tweet);
-
+            $(".tweets").prepend($tweet);
+            
         }
       }            
 
@@ -127,7 +128,7 @@
         setInterval(function(){
           var newTweetCount = streams.home.length - count;
           $(".DisplayMoreTweets").text(newTweetCount + " New Tweets");      
-        }, 10)
+        }, 10);
 
         showTweet();
         $("body").on("click",".DisplayMoreTweets" ,updateTweet);
